@@ -17,11 +17,6 @@ gem 'puma', '>= 5.0'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
-# Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
-gem 'solid_cable'
-gem 'solid_cache'
-gem 'solid_queue'
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
@@ -35,7 +30,11 @@ gem 'thruster', require: false
 gem 'image_processing', '~> 1.2'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
-# gem "rack-cors"
+gem 'rack-cors'
+
+gem 'devise'
+gem 'devise-jwt'
+gem 'jsonapi-serializer'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
