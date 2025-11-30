@@ -10,6 +10,11 @@ class User < ApplicationRecord
   validates :phone_number, uniqueness: true
   validates :email, uniqueness: true, allow_blank: true
 
+  # Regenerate JTI on each login to ensure unique tokens
+  def on_jwt_dispatch(_token, _payload)
+    update_column(:jti, SecureRandom.uuid)
+  end
+
   def email_required?
     false
   end
