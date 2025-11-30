@@ -87,18 +87,8 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: quick_com_production
-    username: quick_com
+    database: <%= ENV["QUICK_COM_DATABASE_NAME"] %>
+    username: <%= ENV["QUICK_COM_DATABASE_USERNAME"] %>
     password: <%= ENV["QUICK_COM_DATABASE_PASSWORD"] %>
-  cache:
-    <<: *primary_production
-    database: quick_com_production_cache
-    migrations_paths: db/cache_migrate
-  queue:
-    <<: *primary_production
-    database: quick_com_production_queue
-    migrations_paths: db/queue_migrate
-  cable:
-    <<: *primary_production
-    database: quick_com_production_cable
-    migrations_paths: db/cable_migrate
+    host: <%= ENV["QUICK_COM_DATABASE_HOST"] %>
+    port: <%= ENV["QUICK_COM_DATABASE_PORT"] %>
