@@ -10,9 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_30_095859) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_30_112841) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "otp_verifications", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "email"
+    t.datetime "expires_at"
+    t.string "otp_code"
+    t.string "phone_number"
+    t.datetime "sent_at"
+    t.datetime "updated_at", null: false
+    t.string "verification_token"
+    t.datetime "verified_at"
+    t.index ["email"], name: "index_otp_verifications_on_email"
+    t.index ["expires_at"], name: "index_otp_verifications_on_expires_at"
+    t.index ["otp_code"], name: "index_otp_verifications_on_otp_code"
+    t.index ["phone_number"], name: "index_otp_verifications_on_phone_number"
+    t.index ["verification_token"], name: "index_otp_verifications_on_verification_token", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false

@@ -11,6 +11,12 @@ Rails.application.routes.draw do
                        registrations: 'users/registrations'
                      }
 
+  # OTP verification routes
+  namespace :users do
+    post 'otp_verifications/request', to: 'otp_verifications#request_otp'
+    post 'otp_verifications/verify', to: 'otp_verifications#verify_otp'
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
