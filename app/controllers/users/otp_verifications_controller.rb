@@ -54,11 +54,9 @@ module Users
           code: 200,
           message: 'OTP has been sent successfully.'
         },
-        data: {
-          verification_token: otp_verification.verification_token,
-          # In production, don't send OTP in response. This is for testing only.
-          otp_code: Rails.env.development? ? otp_verification.otp_code : nil
-        }
+        verification_token: otp_verification.verification_token,
+        # In production, don't send OTP in response. This is for testing only.
+        otp_code: Rails.env.development? ? otp_verification.otp_code : nil
       }, status: :ok
     end
 
@@ -95,10 +93,9 @@ module Users
             code: 200,
             message: 'OTP verified successfully.'
           },
-          data: {
-            verification_token: otp_verification.verification_token,
-            verified: true
-          }
+          verification_token: otp_verification.verification_token,
+          verified: true
+
         }, status: :ok
       else
         render json: {
