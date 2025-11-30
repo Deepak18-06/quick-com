@@ -5,13 +5,19 @@ module Users
     include RackSessionsFix
     respond_to :json
 
+    # def create
+    #   # Normalize email or phone_number to login parameter
+    #   params[:user][:login] ||= params[:user][:email] || params[:user][:phone_number] if params[:user].present?
+    #   super
+    # end
+
     private
 
     def respond_with(current_user, _opts = {})
       render json: {
         status: {
           code: 200, message: 'Logged in successfully.',
-          data: { user: UserSerializer.new(current_user).serializable_hash[:data][:attributes] }
+          data: UserSerializer.new(current_user).serializable_hash[:data][:attributes]
         }
       }, status: :ok
     end
